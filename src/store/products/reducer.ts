@@ -1,4 +1,4 @@
-const initialState = {
+const initialState: ProductStateType = {
   data: [
     {
       id: 1,
@@ -23,8 +23,8 @@ const initialState = {
     },
   ],
 }
-
-export type ProductStateType = typeof initialState
+export type ProductT = { id: number; name: string; price: number; label?: string }
+export type ProductStateType = { data: ProductT[] }
 
 export const productReducer = (state = initialState, action: any): ProductStateType => {
   switch (action.type) {

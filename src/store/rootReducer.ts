@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux'
+import { cartReducer } from './cart/reducer'
+import { ICartState } from './cart/types'
 
 import { productReducer, ProductStateType } from './products/reducer'
 
 export const rootReducer = combineReducers({
-  product: productReducer,
+  productState: productReducer,
+  cartState: cartReducer,
 })
 
 export type RootState = {
-  product: ProductStateType
+  productState: ProductStateType
+  cartState: ICartState
 }
