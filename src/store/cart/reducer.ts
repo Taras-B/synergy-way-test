@@ -1,3 +1,4 @@
+import { removeItemFromCart } from '../utils/removeItemFromCart'
 import { EnumCartActionType, ICartState, CartActionT } from './types'
 
 const initialState: ICartState = {
@@ -27,13 +28,9 @@ export const cartReducer = (state = initialState, action: CartActionT): ICartSta
           : [...state.cart, { ...action.payload, amount: 1 }],
       }
     case EnumCartActionType.DELETE_TO_CART:
-      if (state.cart.length > 0) {
-        return {
-          ...state,
-          cart: [...state.cart].filter((item) => item.id !== action.payload),
-        }
-      } else {
-        return state
+      return {
+        ...state,
+        cart: removeItemFromCart(state.cart, action.payload),
       }
 
     default:
