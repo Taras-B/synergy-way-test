@@ -12,10 +12,12 @@ function App() {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    const loadCart = JSON.parse(localStorage.getItem('cart-state') || '')
-    console.log(loadCart)
+    const loadCart = localStorage.getItem('cart-state')
 
-    dispatch(actionsCart.load(loadCart))
+    if (loadCart) {
+      dispatch(actionsCart.load(JSON.parse(loadCart)))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <div className='App'>
